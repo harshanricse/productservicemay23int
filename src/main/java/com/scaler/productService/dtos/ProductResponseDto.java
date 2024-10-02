@@ -15,7 +15,7 @@ public class ProductResponseDto {
     private String imageUrl;
     private String categoryName;
 
-    public ProductResponseDto fromProduct(Product product){
+    public static ProductResponseDto fromProduct(Product product){
         ProductResponseDto productResponseDto = new ProductResponseDto();
         productResponseDto.setImageUrl(product.getImageUrl());
         productResponseDto.setId(product.getId());
