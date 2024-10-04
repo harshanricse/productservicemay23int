@@ -7,6 +7,7 @@ import com.scaler.productService.dtos.ProductResponseDto;
 import com.scaler.productService.models.Product;
 import com.scaler.productService.services.ProductService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class ProductController {
     private ProductService productService;
-    public ProductController(ProductService productService){
+    public ProductController(@Qualifier("productdbservice") ProductService productService){
         this.productService = productService;
     }
     @GetMapping("/product/{id}")
