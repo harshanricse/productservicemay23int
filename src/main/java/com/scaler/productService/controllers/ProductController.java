@@ -47,6 +47,11 @@ public class ProductController {
         Product product = productService.createProduct(productRequestDto.getTitle(), productRequestDto.getPrice(), productRequestDto.getDescription(), productRequestDto.getImage(), productRequestDto.getCategory());
         return ProductResponseDto.fromProduct(product);
     }
+    @PatchMapping("/product/{id}")
+    public ProductResponseDto updateProduct(@PathVariable("id") Long id ,@RequestBody ProductRequestDto productRequestDto) throws ProductNotFoundException {
+        Product product = productService.partialUpdateById(id, productRequestDto.toProduct(productRequestDto));
+        return ProductResponseDto.fromProduct(product);
+    }
     @DeleteMapping
     public void deleteProduct(){
 

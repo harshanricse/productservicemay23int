@@ -48,4 +48,9 @@ public class FakeStoreProductService implements ProductService{
         FakeStoreProductResponseDto responseDto = restTemplate.postForObject("https://fakestoreapi.com/products", requestDto, FakeStoreProductResponseDto.class);
         return responseDto.toProduct();
     }
+
+    @Override
+    public Product partialUpdateById(Long id,Product product) {
+        return null;
+    }
 }
