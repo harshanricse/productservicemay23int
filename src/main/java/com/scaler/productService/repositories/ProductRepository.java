@@ -30,4 +30,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     //JPA Query
     @Query("select p from Product p where p.category.name= :categoryName")
     List<Product> getProductsBasedOnCategoryNames(@Param("categoryName") String categoryName);
+
+    @Query(value = "select p.id, p.title, p.description, p.category_id, p.created_at, p.updated_at, p.is_deleted, p.image_url, p.price from product p join category c on p.category_id=c.id and c.name= :categoryName", nativeQuery = true)
+    List<Product> getProductBasedOnCategoryNames2(@Param("categoryName") String categoryName);
 }

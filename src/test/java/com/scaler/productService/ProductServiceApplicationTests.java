@@ -39,4 +39,10 @@ class ProductServiceApplicationTests {
 		List<Product> product = productRepository.getProductsBasedOnCategoryNames("electronics");
 		System.out.println(product);
 	}
+
+	@Test
+	public void getProductsFromCategoryUsingNativeQuery(){
+		List<Product> product = productRepository.getProductBasedOnCategoryNames2("electronics");
+		System.out.println(product);
+	}
 }
