@@ -1,5 +1,6 @@
 package com.scaler.productService.repositories;
 
+import com.scaler.productService.models.Category;
 import com.scaler.productService.models.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -22,4 +23,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     @Override
     Optional<Product> findById(Long aLong);
+    List<Product> findByCategory(Category category);
+    List<Product> findByCategory_NameEquals(String  name);
+
 }

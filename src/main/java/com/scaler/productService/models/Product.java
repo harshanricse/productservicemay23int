@@ -16,4 +16,14 @@ public class Product extends BaseModel{
     @ManyToOne
     private Category category;
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", category=" + category +
+                '}';
+    }
 }
