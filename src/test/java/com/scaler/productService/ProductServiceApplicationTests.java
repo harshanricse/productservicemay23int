@@ -34,4 +34,9 @@ class ProductServiceApplicationTests {
 		System.out.println(product);
 	}
 
+	@Test
+	public void getProductsFromCategoryUsingJpaQuery(){
+		List<Product> product = productRepository.getProductsBasedOnCategoryNames("electronics");
+		System.out.println(product);
+	}
 }
