@@ -58,4 +58,15 @@ class ProductServiceApplicationTests {
 		Optional<Category> category = categoryRepository.findById(1L);
 		System.out.println(category.get().getProducts());
 	}
+	@Transactional
+	@Test
+	public void nplusoneproblem(){
+		List<Category> categories = categoryRepository.findAll();
+		for(Category category: categories){
+			List<Product> products = category.getProducts();
+			for(Product product: products){
+				System.out.println(product.getTitle());
+			}
+		}
+	}
 }
