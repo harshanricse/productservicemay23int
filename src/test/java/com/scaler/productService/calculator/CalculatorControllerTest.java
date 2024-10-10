@@ -12,9 +12,10 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 @SpringBootTest
 public class CalculatorControllerTest {
-//    //created a mock of CalculatorService bcz we want to test CalculatorController in isolation
-//    private CalculatorService cs= Mockito.mock(CalculatorService.class);//dummy CalculatorService object
-//                                or use   @MockBean
+//    created a mock of CalculatorService bcz we want to test CalculatorController in isolation
+//    There are two ways to create the mock dependencies objects using mockito
+//    private CalculatorService cs= Mockito.mock(CalculatorService.class);//dummy CalculatorService object -- first way
+//                                or use   @MockBean (2nd way)
 //    private CalculatorController calculatorController = new CalculatorController(cs);
     @MockBean
     private CalculatorService cs;

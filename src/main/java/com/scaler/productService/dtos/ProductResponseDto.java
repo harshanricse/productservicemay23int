@@ -1,6 +1,5 @@
 package com.scaler.productService.dtos;
 
-import com.scaler.productService.models.Category;
 import com.scaler.productService.models.Product;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +15,9 @@ public class ProductResponseDto {
     private String categoryName;
 
     public static ProductResponseDto fromProduct(Product product){
+        if(product == null){
+            return null;
+        }
         ProductResponseDto productResponseDto = new ProductResponseDto();
         productResponseDto.setImageUrl(product.getImageUrl());
         productResponseDto.setId(product.getId());

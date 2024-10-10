@@ -25,7 +25,7 @@ public class ProductController {
         this.productService = productService;
     }
     @GetMapping("/product/{id}")
-    private ProductResponseDto getProductById(@PathVariable("id") Long id) throws ProductNotFoundException {
+    public ProductResponseDto getProductById(@PathVariable("id") Long id) throws ProductNotFoundException {
         Product product = productService.getProductById(id);
         ProductResponseDto productResponseDto = new ProductResponseDto().fromProduct(product);
         log.info("returning productResponseDto");
