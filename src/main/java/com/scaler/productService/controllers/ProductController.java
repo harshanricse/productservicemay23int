@@ -1,9 +1,11 @@
 package com.scaler.productService.controllers;
 
 import com.scaler.productService.ProductNotFoundException;
+import com.scaler.productService.commons.AuthenticationCommons;
 import com.scaler.productService.dtos.ErrorDto;
 import com.scaler.productService.dtos.ProductRequestDto;
 import com.scaler.productService.dtos.ProductResponseDto;
+import com.scaler.productService.dtos.UserDto;
 import com.scaler.productService.models.Product;
 import com.scaler.productService.services.ProductService;
 import lombok.extern.log4j.Log4j2;
@@ -21,11 +23,17 @@ import java.util.List;
 
 public class ProductController {
     private ProductService productService;
-    public ProductController(@Qualifier("productdbservice") ProductService productService){
+    private AuthenticationCommons authenticationCommons;
+    public ProductController(@Qualifier("fakestoreservice") ProductService productService, AuthenticationCommons authenticationCommons){
         this.productService = productService;
+        this.authenticationCommons = authenticationCommons;
     }
     @GetMapping("/product/{id}")
-    public ProductResponseDto getProductById(@PathVariable("id") Long id) throws ProductNotFoundException {
+    public ProductResponseDto getProductById(@PathVariable("id") Long id, @RequestHeader("Authorization") String token) throws ProductNotFoundException {
+        UserDto userDto = authenticationCommons.validateToken(token);
+        if(userDto==null){
+            throw new RuntimeException("Invalid token");
+        }
         Product product = productService.getProductById(id);
         ProductResponseDto productResponseDto = new ProductResponseDto().fromProduct(product);
         log.info("returning productResponseDto");
